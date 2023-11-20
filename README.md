@@ -4,7 +4,12 @@ The CLI tool, that allows to upgrade specific library version in project package
 
 ## Usage
 
+This project relies on node@18. If you're using `nvm`, there's an `.nvmrc` in repo root.
+
 ```sh
+# switch to the right Node version (if using NVM), otherwise make sure the correct Node version on your own
+nvm use
+
 # build
 npm run build
 
