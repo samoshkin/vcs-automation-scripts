@@ -2,14 +2,26 @@ import BitbucketApiClient from './bitbucket-api-client';
 import BitbucketRemoteRepository from './bitbucket-remote-repo';
 import { IRemoteRepository } from '../contracts/remote-repo';
 
+// TODO: check if user has access to workspace/repoSlug (and throw AppError)
+
+/**
+ * Represents the Bitbucket server instance
+ * Instance is authenticated with repo access token
+ * Use it to obtain access to a repository
+ */
 export default class BitbucketHost {
   constructor(private readonly accessToken: string) {}
 
-  // TODO: check if user has access to workspace/repoSlug (and throw AppError)
+  /**
+   * Obtains the wrapper object over remote repository
+   *
+   * @param {string} workspace - bitbucket workspace
+   * @param {string} repoSlug - bitbucket repo slug
+   * @return {Promise<IRemoteRepository>} A promise that resolves to an instance of the IRemoteRepository interface.
+   */
   async getRepo(workspace: string, repoSlug: string): Promise<IRemoteRepository> {
 
     const bitbucketClient = new BitbucketApiClient({
-      baseUrl: 'https://api.bitbucket.org/2.0',
       auth: {
         token: this.accessToken,
       }

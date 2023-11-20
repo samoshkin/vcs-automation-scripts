@@ -1,3 +1,8 @@
+/**
+ * Branch information as returned from Bitbucket API
+ *
+ * NOTE: only essential fields are mentioned
+ */
 interface BranchResponse {
   name: string;
   type: string,
@@ -6,6 +11,11 @@ interface BranchResponse {
   }
 }
 
+/**
+ * Repo information as returned from Bitbucket API
+ *
+ * NOTE: only essential fields are mentioned
+ */
 interface RepoResponse {
   name: string;
   type: string;
@@ -15,6 +25,11 @@ interface RepoResponse {
   }
 }
 
+/**
+ * Pull request information as returned from Bitbucket API
+ *
+ * NOTE: only essential fields are mentioned
+ */
 interface PullRequestResponse {
   type: string
   id: number;
@@ -28,20 +43,43 @@ interface PullRequestResponse {
 
 type FileResponse = string;
 
+/**
+ * Basic wrapper object over Bitbucket HTTP API
+ * so you don't need to craft HTTP requests manually
+ * https://developer.atlassian.com/cloud/bitbucket/rest/intro
+ */
 export default class BitbucketApiClient {
   private baseUrl: string;
   private authToken: string;
 
+  /**
+   * Creates an instance of BitbucketApiClient
+   *
+   * @param {string} [options.baseUrl] - base URL for the Bitbucket API.
+   * @param {string} options.auth.token - repo access token
+   */
   constructor(options: {
-    baseUrl: string,
+    baseUrl?: string,
     auth: {
       token: string
     }
   }){
-    this.baseUrl = options.baseUrl || 'https://api.bitbucket.org/2.0/';
+    this.baseUrl = options.baseUrl || 'https://api.bitbucket.org/2.0';
     this.authToken = options.auth.token;
   }
 
+
+   /**
+   * Opens a pull request with the given options.
+   *
+   * @param {Object} options - options describing details of pull request
+   * @param {string} options.workspace - bitbucket workspace
+   * @param {string} options.repoSlug - bitbucket repo slug
+   * @param {string} options.title - title of the request
+   * @param {string} options.sourceBranch - source branch
+   * @param {string} options.targetBranch - target branch
+   * @return {Promise<PullRequestResponse>} - A promise that resolves to the pull request response
+   */
   async openPullRequest(options: {
     workspace: string,
     repoSlug: string,
@@ -74,6 +112,18 @@ export default class BitbucketApiClient {
     return await response.json() as PullRequestResponse;
   }
 
+  /**
+   * Creates a new commit at specific branch by applying given files
+   *
+   * @param {object} options - The options for creating the file commit.
+   * @param {string} options.workspace - bitbucket workspace
+   * @param {string} options.repoSlug - bitbucket repo slug
+   * @param {string} options.message - The commit message.
+   * @param {string} options.author - The author of the commit.
+   * @param {string} options.branch - the branch name where the commit is supposed to be added
+   * @param {FormData} options.body - FormData object containing files
+   * Each file is keyed by file path, which is relative to repo root
+   */
   async createFileCommit(options: {
     workspace: string,
     repoSlug: string,
@@ -96,6 +146,13 @@ export default class BitbucketApiClient {
     await this.ensureResponseOk(response);
   }
 
+  /**
+   * Retrieves a repo information from the API
+   *
+   * @param {string} options.workspace - bitbucket workspace
+   * @param {string} options.repoSlug - bitbucket slug
+   * @return {Promise<RepoResponse>} - A promise that resolves to the repository response info.
+   */
   async getRepo(options: {
     workspace: string,
     repoSlug: string
@@ -110,6 +167,14 @@ export default class BitbucketApiClient {
     return await response.json() as RepoResponse;
   }
 
+  /**
+   * Retrieves the branch information
+   *
+   * @param {string} options.workspace - bitbucket workspace
+   * @param {string} options.repoSlug - bitbucket slug
+   * @param {string} options.branchName - the name of the branch.
+   * @return {Promise<BranchResponse>} A promise that resolves with the branch info.
+   */
   async getBranch(options: {
     workspace: string,
     repoSlug: string
@@ -126,6 +191,15 @@ export default class BitbucketApiClient {
     return await response.json() as BranchResponse;
   }
 
+  /**
+   * Creates a new branch in the specified repo.
+   *
+   * @param {string} options.workspace - bitbucket workspace
+   * @param {string} options.repoSlug - bitbucket slug
+   * @param {string} options.name - the name of the new branch.
+   * @param {string} options.fromRef - the reference (commit hash) from which to create the branch.
+   * @return {Promise<BranchResponse>} A promise that resolves with the newly created branch info
+   */
   async createBranch(options: {
     workspace: string,
     repoSlug: string,
@@ -149,6 +223,16 @@ export default class BitbucketApiClient {
     return await response.json() as BranchResponse;
   }
 
+  /**
+   * Downloads the raw contents of a file from a given repo
+   *
+   * @param {Object} options - The options for retrieving the file contents.
+   * @param {string} options.workspace - bitbucket workspace
+   * @param {string} options.repoSlug - bitbucket repository slug
+   * @param {string} options.path - The path to the file (relative to repo root)
+   * @param {string} options.commit - the commit hash where to look for the file.
+   * @return {Promise<FileResponse>} A promise that resolves with the file contents.
+   */
   async getFileContents(options: {
     workspace: string,
     repoSlug: string,

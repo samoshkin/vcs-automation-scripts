@@ -2,6 +2,9 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import AppError from './errors';
 
+/**
+ * Represents input arguments as passed through CLI arguments or env variables
+ */
 export interface ScriptInputArgs {
   workspace: string;
   repoSlug: string;
@@ -11,6 +14,11 @@ export interface ScriptInputArgs {
 }
 
 
+/**
+ * Routine that parses app args either from CLI args or env vars
+ * and compose them all in a single object
+ * @returns
+ */
 export function parseScriptArgs(): ScriptInputArgs {
   const args = yargs(hideBin(process.argv)).argv;
   const inputs = {
@@ -26,7 +34,8 @@ export function parseScriptArgs(): ScriptInputArgs {
   return inputs;
 }
 
-// very basic validation
+// this is very basic validation
+// TODO: either define all expected args through yargs.options or use some schema-based validation library
 function ensureRequiredArgsArePresent(inputs: ScriptInputArgs) {
   if (!inputs.workspace) {
     throw AppError.MissingScriptArgument('--workspace');

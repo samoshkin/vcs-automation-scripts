@@ -6,8 +6,27 @@ import AppError from './errors';
 type DependencyKind = 'devDependencies' | 'dependencies' | 'peerDependencies';
 
 // TODO (low): check if given npm library exist in remote package registry
+// TODO: error handling (when given file is not in JSON format)
+
+/**
+ * The service that is capable of upgrading library version in a given package.json file
+ */
 export default class LibraryUpgradeService {
 
+  /**
+   * Upgrades the specified library version in the given package.json file.
+   *
+   *
+   * @param {string} packageJsonFilePath - the file path to the package.json file
+   * @param {string} libraryName - The name of the library to upgrade.
+   * @param {string} newLibraryVersion - the new/desired version of the library.
+   * @param {DependencyKind[]} [depKinds] - places where we want to upgrade the library version (dependencies, devDependencies, peerDependencies)
+   * @return {Promise<void>} A promise that resolves when the upgrade is complete.
+   * @throws {AppError} the library version does not match valid semver pattern (x.y.z)
+   * @throws {AppError} the library usage is not found in package.json
+   * @throws {AppError} the package.json file is not found
+   * @throws {AppError} the given library version is less than the one currently used in package.json (possible version downgrade)
+   */
   async upgradeLibrary(
     packageJsonFilePath: string,
     libraryName: string,
