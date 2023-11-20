@@ -4,7 +4,7 @@
   "description": "VCS automation scripts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/samoshkin/vcs-automation-scripts"
+    "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
   },
   "author": "Alexey Samoshkin",
   "license": "MIT",
@@ -12,13 +12,8 @@
     "build": "tsc",
     "buildw": "tsc -w",
     "lint": "tsc --noEmit && eslint",
-    "start-dev": "cross-env NODE_NO_WARNINGS=1 node -r ts-node/register src/main.ts",
-    "start": "cross-env NODE_NO_WARNINGS=1 node ./dist/main.js",
+    "start": "node -r ts-node/register src/main.ts",
     "test": "jest --forceExit --verbose"
-  },
-  "dependencies": {
-    "semver": "^7.5.4",
-    "tmp-promise": "^3.0.3"
   },
   "devDependencies": {
     "@types/jest": "^27.0.0",
@@ -28,16 +23,20 @@
     "@types/tmp": "^0.2.6",
     "@typescript-eslint/eslint-plugin": "4.14.2",
     "@typescript-eslint/parser": "4.14.2",
-    "cross-env": "^7.0.3",
     "eslint": "7.19.0",
     "jest": "^27.0.6",
     "shelljs": "0.8.5",
     "ts-jest": "^27.0.3",
-    "ts-node": "^10.9.1",
     "type-fest": "^4.8.1",
     "typescript": "4.9"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "bitbucket": "^2.11.0",
+    "semver": "^7.5.4",
+    "tmp": "^0.2.1",
+    "ts-node": "^10.9.1"
   }
 }

@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can upgrade version in multiple locations 1`] = `
+Object {
+  "author": "Alexey Samoshkin",
+  "dependencies": Object {
+    "bitbucket": "^2.11.0",
+    "semver": "^7.5.4",
+    "shelljs": "1.0.0",
+    "tmp": "^0.2.1",
+    "ts-node": "^10.9.1",
+  },
+  "description": "VCS automation scripts",
+  "devDependencies": Object {
+    "@types/jest": "^27.0.0",
+    "@types/node": "^18.15.3",
+    "@types/semver": "^7.5.5",
+    "@types/shelljs": "^0.8.15",
+    "@types/tmp": "^0.2.6",
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "@typescript-eslint/parser": "4.14.2",
+    "eslint": "7.19.0",
+    "jest": "^27.0.6",
+    "shelljs": "1.0.0",
+    "ts-jest": "^27.0.3",
+    "type-fest": "^4.8.1",
+    "typescript": "4.9",
+  },
+  "engines": Object {
+    "node": ">=18.0.0",
+  },
+  "license": "MIT",
+  "name": "vcs-automation-scripts",
+  "peerDependencies": Object {
+    "shelljs": "1.0.0",
+  },
+  "repository": Object {
+    "type": "git",
+    "url": "https://github.com/Microsoft/TypeScript-Node-Starter",
+  },
+  "scripts": Object {
+    "build": "tsc",
+    "buildw": "tsc -w",
+    "lint": "tsc --noEmit && eslint",
+    "start": "node -r ts-node/register src/main.ts",
+    "test": "jest --forceExit --verbose",
+  },
+  "version": "0.0.1",
+}
+`;
+
+exports[`upgrades library version 1`] = `
+Object {
+  "author": "Alexey Samoshkin",
+  "dependencies": Object {
+    "bitbucket": "^2.11.0",
+    "semver": "^7.5.4",
+    "tmp": "^0.2.1",
+    "ts-node": "^10.9.1",
+  },
+  "description": "VCS automation scripts",
+  "devDependencies": Object {
+    "@types/jest": "^27.0.0",
+    "@types/node": "^18.15.3",
+    "@types/semver": "^7.5.5",
+    "@types/shelljs": "^0.8.15",
+    "@types/tmp": "^0.2.6",
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "@typescript-eslint/parser": "4.14.2",
+    "eslint": "7.19.0",
+    "jest": "^27.0.6",
+    "shelljs": "1.0.0",
+    "ts-jest": "^27.0.3",
+    "type-fest": "^4.8.1",
+    "typescript": "4.9",
+  },
+  "engines": Object {
+    "node": ">=18.0.0",
+  },
+  "license": "MIT",
+  "name": "vcs-automation-scripts",
+  "repository": Object {
+    "type": "git",
+    "url": "https://github.com/Microsoft/TypeScript-Node-Starter",
+  },
+  "scripts": Object {
+    "build": "tsc",
+    "buildw": "tsc -w",
+    "lint": "tsc --noEmit && eslint",
+    "start": "node -r ts-node/register src/main.ts",
+    "test": "jest --forceExit --verbose",
+  },
+  "version": "0.0.1",
+}
+`;
+
+exports[`upgrades library version 2`] = `
+"{
+  \\"name\\": \\"vcs-automation-scripts\\",
+  \\"version\\": \\"0.0.1\\",
+  \\"description\\": \\"VCS automation scripts\\",
+  \\"repository\\": {
+    \\"type\\": \\"git\\",
+    \\"url\\": \\"https://github.com/Microsoft/TypeScript-Node-Starter\\"
+  },
+  \\"author\\": \\"Alexey Samoshkin\\",
+  \\"license\\": \\"MIT\\",
+  \\"scripts\\": {
+    \\"build\\": \\"tsc\\",
+    \\"buildw\\": \\"tsc -w\\",
+    \\"lint\\": \\"tsc --noEmit && eslint\\",
+    \\"start\\": \\"node -r ts-node/register src/main.ts\\",
+    \\"test\\": \\"jest --forceExit --verbose\\"
+  },
+  \\"devDependencies\\": {
+    \\"@types/jest\\": \\"^27.0.0\\",
+    \\"@types/node\\": \\"^18.15.3\\",
+    \\"@types/semver\\": \\"^7.5.5\\",
+    \\"@types/shelljs\\": \\"^0.8.15\\",
+    \\"@types/tmp\\": \\"^0.2.6\\",
+    \\"@typescript-eslint/eslint-plugin\\": \\"4.14.2\\",
+    \\"@typescript-eslint/parser\\": \\"4.14.2\\",
+    \\"eslint\\": \\"7.19.0\\",
+    \\"jest\\": \\"^27.0.6\\",
+    \\"shelljs\\": \\"1.0.0\\",
+    \\"ts-jest\\": \\"^27.0.3\\",
+    \\"type-fest\\": \\"^4.8.1\\",
+    \\"typescript\\": \\"4.9\\"
+  },
+  \\"engines\\": {
+    \\"node\\": \\">=18.0.0\\"
+  },
+  \\"dependencies\\": {
+    \\"bitbucket\\": \\"^2.11.0\\",
+    \\"semver\\": \\"^7.5.4\\",
+    \\"tmp\\": \\"^0.2.1\\",
+    \\"ts-node\\": \\"^10.9.1\\"
+  }
+}"
+`;
