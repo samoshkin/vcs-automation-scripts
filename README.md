@@ -26,4 +26,8 @@ CLI arguments:
 - `--reposlug`, Bitbucket reposlug (e.g. test)
 
 
-Make sure to provide Bitbucket repo access token via `BITBUCKET_ACCESS_TOKEN` variable.
+### How to obtain Bitbucket access token
+
+Make sure to provide Bitbucket access token via `BITBUCKET_ACCESS_TOKEN` variable. It should be a repository-level access token. Navigate to "Repository Settings => Access tokens" menu.
+
+![how to obtain access token](docs/how_to_obtain_access_token.jpeg)
