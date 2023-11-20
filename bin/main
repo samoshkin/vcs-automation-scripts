@@ -1,5 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 
-import { main } from '../src/main';
-
+const { main } = require('../dist/main');
 main();

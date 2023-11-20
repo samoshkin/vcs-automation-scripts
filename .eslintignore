@@ -7,4 +7,5 @@ coverage/*
 # custom definition files
 /src/types/
 /src/templates/
+bin/
 node_modules/*
