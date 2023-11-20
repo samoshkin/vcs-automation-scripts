@@ -4,6 +4,10 @@ import LibraryUpgradeService from './library-upgrade-service';
 import { BitbucketHost } from './bitbucket';
 import { parseScriptArgs } from './inputs';
 
+// TODO: check for more edge cases (no access to the repo)
+// TODO (low): better CLI args parsing
+// TODO (low): add some logging (using https://github.com/debug-js/debug)
+
 export async function main(): Promise<void> {
 
   const args = parseScriptArgs();
